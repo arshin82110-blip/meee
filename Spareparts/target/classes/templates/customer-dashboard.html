@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Spare Parts Shop</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+text-align:center;
+}
+
+table{
+margin:auto;
+margin-top:40px;
+width:70%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #333;
+}
+
+th{
+background:#1b1b1b;
+}
+
+input{
+width:60px;
+padding:6px;
+}
+
+button{
+background:#00c3ff;
+border:none;
+padding:8px 15px;
+color:white;
+border-radius:4px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Available Spare Parts</h1>
+<a href="/customer/orders">View Purchased Parts</a>
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Price</th>
+<th>Stock</th>
+<th>Buy</th>
+</tr>
+
+<tr th:each="p : ${parts}">
+
+<td th:text="${p.id}"></td>
+<td th:text="${p.name}"></td>
+<td th:text="${p.price}"></td>
+<td th:text="${p.quantity}"></td>
+
+<td>
+<form th:action="@{/customer/buy}"
+ method="post">
+
+<input type="hidden" name="partId"
+th:value="${p.id}">
+<input type="number" name="qty" 
+min="1"  required>
+
+<button type="submit">Buy</button>
+</form>
+</td>
+
+</tr>
+
+</table>
+
+</body>
+</html>

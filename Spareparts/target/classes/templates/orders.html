@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Purchased Parts</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+text-align:center;
+}
+
+table{
+margin:auto;
+margin-top:20px;
+width:60%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #333;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Your Purchased Parts</h2>
+
+<table>
+
+<tr>
+<th>Part</th>
+<th>Price</th>
+<th>Quantity</th>
+</tr>
+
+<tr th:each="o : ${orders}">
+<td th:text="${o.partName}"></td>
+<td th:text="${o.price}"></td>
+<td th:text="${o.quantity}"></td>
+</tr>
+
+</table>
+
+<br>
+
+<a href="/customer/dashboard">Back to Shop</a>
+
+</body>
+</html>
